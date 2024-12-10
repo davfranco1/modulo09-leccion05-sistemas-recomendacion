@@ -111,5 +111,7 @@ def filter_data(df):
     df = df[df.userId.isin(filtered_ratings_per_user_df)]
     return df
 
-def recomiendame_un_yanru(df, columna_filtro, genero):
-    return df[df[columna_filtro] == genero][1:10]
+def recomiendame_un_yanru(df, columna_filtro, columna_ranking, genero):
+    df_filtro = df[df[columna_filtro] == genero][1:10]
+    df_filtro = df_filtro.sort_values(by= columna_ranking, ascending = "False")
+    return df_filtro
